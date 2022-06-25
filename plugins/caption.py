@@ -1,6 +1,5 @@
 from pyrogram import Client, filters 
-from helper.database import find, addcaption, delcaption
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from helper.database import find, addcaption, delcaption 
 
 @Client.on_message(filters.private & filters.command('set_caption'))
 async def add_caption(client, message):
@@ -22,12 +21,6 @@ async def delete_caption(client, message):
 async def see_caption(client, message): 
     caption = find(int(message.chat.id))[1]
     if caption:
-       await message.reply_text(f"<b><u>Your Caption:</b></u>\n\n`{caption}`"
-           reply_markup=InlineKeyboardMarkup( [[
-                InlineKeyboardButton('📢 𝚄𝙿𝙳𝙰𝚃𝙴𝚂', url='https://t.me/Powerupdate'),
-                InlineKeyboardButton('🍂 𝚂𝚄𝙿𝙿𝙾𝚁𝚃', url='https://t.me/Powersupporthelp')
-              ]]                   
-             )
-       )                  
+       await message.reply_text(f"<b><u>Your Caption:</b></u>\n\n`{caption}`")
     else:
        await message.reply_text("**You dont have any custom caption**")
